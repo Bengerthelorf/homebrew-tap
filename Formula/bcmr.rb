@@ -1,7 +1,7 @@
 class Bcmr < Formula
   desc "Better Copy Move Remove - A modern, safe file operation tool"
   homepage "https://github.com/Bengerthelorf/bcmr"
-  version "0.3.4"
+  version "0.3.5"
   license "GPL-3.0"
 
   if OS.mac?
