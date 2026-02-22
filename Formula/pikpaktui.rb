@@ -1,20 +1,20 @@
 class Pikpaktui < Formula
   desc "A TUI and CLI client for PikPak cloud storage"
   homepage "https://github.com/Bengerthelorf/pikpaktui"
-  version "0.0.40"
+  version "0.0.41"
   license "Apache-2.0"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.40/pikpaktui-aarch64-macos.tar.gz"
-      sha256 "b3fb6af9ee17ec678dd4d097161997d6666f29294dfb36bc8327bfeb1f6c8d59"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.41/pikpaktui-aarch64-macos.tar.gz"
+      sha256 "462c6c5b7dccbb57946d7baaabecf9b62fa54030476ac4f485d600541fd6ab50"
     else
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.40/pikpaktui-x86_64-macos.tar.gz"
-      sha256 "be4d4508b67a4e0ecd6f674d2139960c6cca16bb60bcbcf6507c413bf025fb73"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.41/pikpaktui-x86_64-macos.tar.gz"
+      sha256 "d1e4f69165d89d28a160be89be3cbf896563529f950b76daeba92a8f22002e75"
     end
   elsif OS.linux?
-    url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.40/pikpaktui-x86_64-linux.tar.gz"
-    sha256 "58c391c5722a59076487c1ce8b7735b7adc2e7057925a6c8e76a041cdf3d15af"
+    url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.41/pikpaktui-x86_64-linux.tar.gz"
+    sha256 "d35d0c26b56a8825e0a2ee5d39c73b7f0220b49d9cfe325e86e3f9242df2b79a"
   end
 
   def install
