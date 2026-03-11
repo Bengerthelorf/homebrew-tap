@@ -1,8 +1,8 @@
 cask "iconchanger" do
-  version "1.4.2-1"
-  sha256 "f741c0b9f07c7f15a8c7b8099a5ab9af0fa336126aa7d4e922f40b371ed3060e"
+  version "1.4.2-2"
+  sha256 "dc10128bc1f76a624144f80bf4a99f483f19655a5fbd5b793d7a7142d91d1bd0"
 
-  url "https://github.com/Bengerthelorf/macIconChanger/releases/download/v1.4.2-1/IconChanger.dmg"
+  url "https://github.com/Bengerthelorf/macIconChanger/releases/download/v1.4.2-2/IconChanger.dmg"
   name "IconChanger"
   desc "Customize macOS app icons"
   homepage "https://github.com/Bengerthelorf/macIconChanger"
