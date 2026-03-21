@@ -1,20 +1,20 @@
 class Bcmr < Formula
   desc "Better Copy Move Remove - A modern, safe file operation tool"
   homepage "https://github.com/Bengerthelorf/bcmr"
-  version "0.4.13"
+  version "0.4.14"
   license "GPL-3.0"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.13/bcmr-aarch64-macos.tar.gz"
-      sha256 "92e29b5e6462fbf2f10a77632bdb485b22f5bbe01352b786d29739d70c97da2a"
+      url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.14/bcmr-aarch64-macos.tar.gz"
+      sha256 "2ea410e5f6a8845dc1d8d20abe685f2934cba1887edb43ca1f4a65c03a338888"
     else
-      url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.13/bcmr-x86_64-macos.tar.gz"
-      sha256 "5d96cc864bf4d8aab46647c64a03c25d2c4f743e190942cf9a2482247e98cdf3"
+      url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.14/bcmr-x86_64-macos.tar.gz"
+      sha256 "1139f0d889f7aaf9138e154e4223c4036096566fac3c887a228f5d9306243591"
     end
   elsif OS.linux?
-    url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.13/bcmr-x86_64-linux.tar.gz"
-    sha256 "aa0467b988d6902f61e8ec2120926dec5c671efa253290877750b7e8f14fc948"
+    url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.14/bcmr-x86_64-linux.tar.gz"
+    sha256 "375f95e2f7d657e1646ca067d5a73af30b3aef3621563623e1a4d34f8a906985"
   end
 
   def install
