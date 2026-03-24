@@ -1,8 +1,8 @@
 cask "claudit" do
-  version "0.0.24"
-  sha256 "4b2403d43845a479f845c1d51d0ce6d70713035548b0ee5e21bacc5750990f97"
+  version "0.0.25"
+  sha256 "37d94fabbcad158a81a3193e85da214f455d2731bb776188de238ad22b079fc7"
 
-  url "https://github.com/Bengerthelorf/Claudit/releases/download/v0.0.24/Claudit.dmg"
+  url "https://github.com/Bengerthelorf/Claudit/releases/download/v0.0.25/Claudit.dmg"
   name "Claudit"
   desc "Claude API usage tracker for macOS menu bar"
   homepage "https://github.com/Bengerthelorf/Claudit"
