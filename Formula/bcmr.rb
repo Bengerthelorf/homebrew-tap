@@ -7,14 +7,14 @@ class Bcmr < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.16/bcmr-aarch64-macos.tar.gz"
-      sha256 "67bdadee92af742d01a70042adde3cbaf17b5b821c9bc5a15f166095d6ac64d9"
+      sha256 "a5656dcdd9ec3e0b8c9afa019192ca36e86f9c16fe2c2e8ba42f539a2b9eaca6"
     else
       url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.16/bcmr-x86_64-macos.tar.gz"
-      sha256 "44d3d5a77519fc25ae8687c1cf31e93b434274cfae879f543aa1bbe301cd2cfb"
+      sha256 "92112d19ebf5305dcb1657ea96bedfb16c2f979621bf587a3f635b6d18676248"
     end
   elsif OS.linux?
     url "https://github.com/Bengerthelorf/bcmr/releases/download/v0.4.16/bcmr-x86_64-linux.tar.gz"
-    sha256 "883c63061147921cbc3c8a9bec691597a7ab5cb9e20999983b22371d8f5fe944"
+    sha256 "e905b49d2744c610d8608204930881623d233a51e9a5e861b19ff571a18f8cc8"
   end
 
   def install
