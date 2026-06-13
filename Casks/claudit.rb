@@ -4,14 +4,12 @@ cask "claudit" do
 
   url "https://github.com/Bengerthelorf/Claudit/releases/download/v0.0.26/Claudit.dmg"
   name "Claudit"
-  desc "Claude API usage tracker for macOS menu bar"
+  desc "Claude API usage tracker for the menu bar"
   homepage "https://github.com/Bengerthelorf/Claudit"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Claudit.app"
 
-  zap trash: [
-    "~/Library/Preferences/homes.snaix.Claudit.plist",
-  ]
+  zap trash: "~/Library/Preferences/homes.snaix.Claudit.plist"
 end
