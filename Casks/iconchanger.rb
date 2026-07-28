@@ -5,7 +5,7 @@ cask "iconchanger" do
   name "IconChanger"
   desc "Customize macOS app icons"
   homepage "https://github.com/Bengerthelorf/macIconChanger"
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
   app "IconChanger.app"
   zap trash: [
     "~/Library/Preferences/com.zhuhaoyu.IconChanger.plist",
