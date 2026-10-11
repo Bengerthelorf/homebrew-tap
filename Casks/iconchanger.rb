@@ -7,7 +7,7 @@ cask "iconchanger" do
   desc "Customize macOS app and folder icons"
   homepage "https://github.com/Bengerthelorf/macIconChanger"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "IconChanger.app"
 
