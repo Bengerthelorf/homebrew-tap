@@ -7,7 +7,7 @@ cask "claudit" do
   desc "Claude API usage tracker for macOS menu bar"
   homepage "https://github.com/Bengerthelorf/Claudit"
 
-  depends_on macos: ">= :ventura"
+  depends_on macos: :ventura
 
   app "Claudit.app"
 
