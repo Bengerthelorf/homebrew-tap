@@ -1,5 +1,5 @@
 class Pikpaktui < Formula
-  desc "A TUI and CLI client for PikPak cloud storage"
+  desc "TUI and CLI client for PikPak cloud storage"
   homepage "https://github.com/Bengerthelorf/pikpaktui"
   version "0.0.63"
   license "Apache-2.0"

@@ -4,7 +4,7 @@ cask "iconchanger" do
 
   url "https://github.com/Bengerthelorf/macIconChanger/releases/download/v1.5.0/IconChanger.dmg"
   name "IconChanger"
-  desc "Customize macOS app and folder icons"
+  desc "Customize app and folder icons"
   homepage "https://github.com/Bengerthelorf/macIconChanger"
 
   depends_on macos: :ventura
@@ -12,9 +12,9 @@ cask "iconchanger" do
   app "IconChanger.app"
 
   zap trash: [
-    "~/Library/Preferences/com.zhuhaoyu.IconChanger.plist",
-    "~/Library/Caches/com.zhuhaoyu.IconChanger",
-    "~/Library/Application Support/com.zhuhaoyu.IconChanger",
     "~/.iconchanger",
+    "~/Library/Application Support/com.zhuhaoyu.IconChanger",
+    "~/Library/Caches/com.zhuhaoyu.IconChanger",
+    "~/Library/Preferences/com.zhuhaoyu.IconChanger.plist",
   ]
 end
