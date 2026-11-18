@@ -31,6 +31,20 @@ jobs:
           python-version: '3.12'
       - run: python3 -m unittest discover -s tests -v
       - run: bash -n scripts/publish-update.sh
+      - name: Check upstream stable releases weekly
+        if: github.event_name == 'schedule'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import importlib.util
+          spec = importlib.util.spec_from_file_location('updater', 'scripts/update-release.py')
+          updater = importlib.util.module_from_spec(spec)
+          spec.loader.exec_module(updater)
+          for package, (_, file) in updater.PACKAGES.items():
+              tag = updater.current_tag((updater.ROOT / file).read_text(), package)
+              updater.update(package, tag, check=True)
+          PY
 
   audit:
     name: Style and audit
@@ -66,7 +80,7 @@ jobs:
       - uses: Homebrew/actions/setup-homebrew@ceec4e8419bb3c97ce96e9dda7738499ed5f869d
         with:
           stable: true
-      - run: brew audit --cask --online bengerthelorf/tap/iconchanger bengerthelorf/tap/claudit
+      - run: brew audit --cask --online --except=livecheck_version bengerthelorf/tap/iconchanger bengerthelorf/tap/claudit
 
   check:
     name: Homebrew checks

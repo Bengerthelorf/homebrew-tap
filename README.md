@@ -45,6 +45,8 @@ The publisher opens or updates a release PR, enables auto-merge, and waits up to
 
 CI runs on PRs, pushes, manual dispatches, and every Monday. It checks Homebrew style/audit, installs and tests both Formulae on macOS and Linux, audits the downloaded casks on macOS, and exercises updater failure cases. Only stable releases enter this tap.
 
+PR artifact audits validate the declared release. The Monday run also verifies all four packages against their latest upstream stable release and hashes every supported download. This keeps concurrent release PRs independent while still reporting stale packages through the scheduled check.
+
 For a local metadata check without publishing:
 
 ```sh
