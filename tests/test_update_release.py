@@ -45,9 +45,13 @@ class ReleaseUpdateTests(unittest.TestCase):
                     value = UPDATER.URL.sub(lambda m: m[1] + "URL", value)
                     return UPDATER.SHA256.sub(lambda m: m[1] + "SHA256", value)
                 self.assertEqual(structure(source), structure(result))
-                self.assertIn('version "9.8.7"', result)
                 if file.startswith("Casks/"):
+                    self.assertIn('version "9.8.7"', result)
                     self.assertIn('/v#{version}/', result)
+                else:
+                    self.assertIn('/releases/download/v9.8.7/', result)
+                    self.assertNotRegex(result, UPDATER.VERSION)
+                self.assertEqual(UPDATER.current_tag(result, package), "v9.8.7")
 
     def test_release_assets_are_downloaded_and_hashed(self):
         for package in UPDATER.PACKAGES:
@@ -96,7 +100,7 @@ class ReleaseUpdateTests(unittest.TestCase):
     def test_schema_drift_is_rejected(self):
         source = (ROOT / "Formula/bcmr.rb").read_text()
         variants = [
-            source.replace('  version ', '  revision '),
+            source.replace('class Bcmr < Formula', 'class Bcmr < Formula\n  version "1.2.3"'),
             source.replace('      sha256 ', '      # checksum '),
             source.replace('/bcmr/releases/', '/other/releases/'),
             source.replace('bcmr-aarch64-macos.tar.gz', 'bcmr-x86_64-macos.tar.gz'),

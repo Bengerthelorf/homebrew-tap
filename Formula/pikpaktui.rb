@@ -1,7 +1,6 @@
 class Pikpaktui < Formula
   desc "TUI and CLI client for PikPak cloud storage"
   homepage "https://github.com/Bengerthelorf/pikpaktui"
-  version "0.0.63"
   license "Apache-2.0"
 
   if OS.mac?
@@ -27,6 +26,6 @@ class Pikpaktui < Formula
   end
 
   test do
-    system "#{bin}/pikpaktui", "--version"
+    assert_match version.to_s, shell_output("#{bin}/pikpaktui --version")
   end
 end

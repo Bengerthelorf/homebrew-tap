@@ -23,6 +23,22 @@ VERSION = re.compile(r'^  version "[^"\n]+"$', re.MULTILINE)
 SHA256 = re.compile(r'^([ \t]*)sha256 "[0-9a-f]{64}"$', re.MULTILINE)
 
 
+def current_tag(source, package):
+    if PACKAGES[package][1].startswith("Casks/"):
+        matches = VERSION.findall(source)
+        if len(matches) != 1:
+            raise ValueError("expected a single cask version")
+        tag = "v" + json.loads(matches[0].split("version ")[1])
+    else:
+        tags = {match[2].rsplit("/", 2)[-2] for match in URL.finditer(source)}
+        if len(tags) != 1:
+            raise ValueError("Formula URLs must refer to one release tag")
+        tag = tags.pop()
+    if not TAG.fullmatch(tag):
+        raise ValueError("unrecognized release version in the package definition")
+    return tag
+
+
 def api(endpoint):
     return json.loads(subprocess.check_output(["gh", "api", endpoint], text=True))
 
@@ -79,8 +95,10 @@ def render(source, package, tag, assets):
     repo, path = PACKAGES[package]
     prefix = f"https://github.com/Bengerthelorf/{repo}/releases/download/"
     urls = list(URL.finditer(source))
-    if len(urls) != len(assets) or len(VERSION.findall(source)) != 1:
+    versions = 0 if path.startswith("Formula/") else 1
+    if len(urls) != len(assets) or len(VERSION.findall(source)) != versions:
         raise ValueError(f"unexpected release metadata structure in {path}")
+    current_tag(source, package)
     seen = []
     for match in urls:
         old_url = match[2]
@@ -114,7 +132,7 @@ def update(package, tag, root=ROOT, check=False):
     if updated == original:
         print(f"{package} {tag}: release metadata already matches verified downloads")
         return False
-    if VERSION.search(original)[0] == f'  version "{tag[1:]}"':
+    if current_tag(original, package) == tag:
         raise ValueError("metadata changed for an existing version; manual review is required")
     if check:
         raise ValueError(f"{path.name} does not match {tag}; run the updater")

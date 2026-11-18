@@ -7,6 +7,11 @@ cask "claudit" do
   desc "Claude API usage tracker for the menu bar"
   homepage "https://github.com/Bengerthelorf/Claudit"
 
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
   depends_on macos: :sequoia
 
   app "Claudit.app"
