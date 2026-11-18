@@ -99,8 +99,9 @@ def render(source, package, tag, assets):
             return f'{match[1]}url "{url}"\n{match[1]}sha256 "{digest}"'
         result = pair.sub(replace, source)
     else:
-        url, digest = next(iter(assets.values()))
-        result = URL.sub(lambda m: f'{m[1]}url "{url}"', source)
+        name, (_, digest) = next(iter(assets.items()))
+        template = prefix + 'v#{version}/' + name
+        result = URL.sub(lambda m: f'{m[1]}url "{template}"', source)
         result = SHA256.sub(lambda m: f'{m[1]}sha256 "{digest}"', result)
     return VERSION.sub(lambda _: f'  version "{tag[1:]}"', result)
 

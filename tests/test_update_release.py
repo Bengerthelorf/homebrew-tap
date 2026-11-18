@@ -46,6 +46,8 @@ class ReleaseUpdateTests(unittest.TestCase):
                     return UPDATER.SHA256.sub(lambda m: m[1] + "SHA256", value)
                 self.assertEqual(structure(source), structure(result))
                 self.assertIn('version "9.8.7"', result)
+                if file.startswith("Casks/"):
+                    self.assertIn('/v#{version}/', result)
 
     def test_release_assets_are_downloaded_and_hashed(self):
         for package in UPDATER.PACKAGES:

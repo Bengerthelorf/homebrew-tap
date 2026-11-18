@@ -7,7 +7,7 @@ brew install bengerthelorf/tap/bcmr
 brew install bengerthelorf/tap/pikpaktui
 ```
 
-Install macOS apps (macOS 13 Ventura or later):
+Install macOS apps:
 
 ```sh
 brew install --cask bengerthelorf/tap/iconchanger
@@ -18,8 +18,8 @@ brew install --cask bengerthelorf/tap/claudit
 | --- | --- | --- |
 | `bcmr` | [File operations](https://github.com/Bengerthelorf/bcmr) | macOS and Linux, ARM64 and x86-64 |
 | `pikpaktui` | [PikPak client](https://github.com/Bengerthelorf/pikpaktui) | macOS and Linux, ARM64 and x86-64 |
-| `iconchanger` | [App and folder icons](https://github.com/Bengerthelorf/macIconChanger) | macOS |
-| `claudit` | [Claude API usage](https://github.com/Bengerthelorf/Claudit) | macOS |
+| `iconchanger` | [App and folder icons](https://github.com/Bengerthelorf/macIconChanger) | macOS 13 Ventura or later |
+| `claudit` | [Claude API usage](https://github.com/Bengerthelorf/Claudit) | macOS 15 Sequoia or later |
 
 Run `brew update` followed by `brew upgrade` to receive updates.
 
