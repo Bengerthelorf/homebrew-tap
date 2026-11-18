@@ -1,7 +1,6 @@
 class Bcmr < Formula
   desc "Better Copy Move Remove - A modern, safe file operation tool"
   homepage "https://github.com/Bengerthelorf/bcmr"
-  version "0.7.2"
   license "Apache-2.0"
 
   if OS.mac?
@@ -24,7 +23,7 @@ class Bcmr < Formula
 
   def install
     bin.install "bcmr"
-    generate_completions_from_executable(bin/"bcmr", "completions", shells: [:bash, :zsh, :fish])
+    generate_completions_from_executable(bin/"bcmr", "completions")
   end
 
   def caveats

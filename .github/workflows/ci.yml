@@ -1,0 +1,88 @@
+name: Homebrew CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * 1'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: homebrew-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  HOMEBREW_NO_AUTO_UPDATE: '1'
+  HOMEBREW_NO_ANALYTICS: '1'
+
+jobs:
+  updater:
+    name: Release updater
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - run: python3 -m unittest discover -s tests -v
+      - run: bash -n scripts/publish-update.sh
+
+  audit:
+    name: Style and audit
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@ceec4e8419bb3c97ce96e9dda7738499ed5f869d
+        with:
+          stable: true
+      - run: brew style bengerthelorf/tap
+      - run: brew audit --tap=bengerthelorf/tap
+
+  formula:
+    name: Formula (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-15]
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@ceec4e8419bb3c97ce96e9dda7738499ed5f869d
+        with:
+          stable: true
+      - run: brew install bengerthelorf/tap/bcmr bengerthelorf/tap/pikpaktui
+      - run: brew test bengerthelorf/tap/bcmr bengerthelorf/tap/pikpaktui
+
+  cask:
+    name: Cask artifacts
+    runs-on: macos-15
+    timeout-minutes: 20
+    steps:
+      - uses: Homebrew/actions/setup-homebrew@ceec4e8419bb3c97ce96e9dda7738499ed5f869d
+        with:
+          stable: true
+      - run: brew audit --cask --online bengerthelorf/tap/iconchanger bengerthelorf/tap/claudit
+
+  check:
+    name: Homebrew checks
+    if: always()
+    needs: [updater, audit, formula, cask]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Require every validation job to succeed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          results = json.loads(os.environ['RESULTS'])
+          failed = [name for name, job in results.items() if job['result'] != 'success']
+          if failed:
+              raise SystemExit('Failed or skipped checks: ' + ', '.join(failed))
+          PY
