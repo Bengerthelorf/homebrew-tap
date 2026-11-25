@@ -5,19 +5,19 @@ class Pikpaktui < Formula
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.66/pikpaktui-aarch64-macos.tar.gz"
-      sha256 "990fd0bb38cfcdc409259d0f0f135deaecbb505359615ad4dd0361f114f8f53f"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.67/pikpaktui-aarch64-macos.tar.gz"
+      sha256 "6dc4645c090fc39ab6ab8b2588d0204cf657d60558a879772867cf5a8a33f0cb"
     else
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.66/pikpaktui-x86_64-macos.tar.gz"
-      sha256 "7eb2db4b12e5e07a67767a8b3ef20ece5b1cd80b134d5a8cbd8b9a90ffbfd855"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.67/pikpaktui-x86_64-macos.tar.gz"
+      sha256 "79f7b567f02ea61494f3802cdc750bbaa8f242b39eb1196f3a3f7f29d15d53d6"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.66/pikpaktui-aarch64-linux.tar.gz"
-      sha256 "4d517a6ed2c7fca5fe865c0d17e3f106f3ad5a30a481c94e139c9e00188cf37d"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.67/pikpaktui-aarch64-linux.tar.gz"
+      sha256 "efe4dba7a87b58fc37729876bea16580f4a193f27903e8d76efd5c1448b040e8"
     else
-      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.66/pikpaktui-x86_64-linux.tar.gz"
-      sha256 "fa39cf8f690749e1597b31591690f521a9affad49d80d261049815f095f63b5e"
+      url "https://github.com/Bengerthelorf/pikpaktui/releases/download/v0.0.67/pikpaktui-x86_64-linux.tar.gz"
+      sha256 "01a2a11e2054f5ea54895278d378f4c68fc442aa442d529fd2521879784bd215"
     end
   end
 
